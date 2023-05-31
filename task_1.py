@@ -42,14 +42,14 @@ with picamera.PiCamera() as camera:
         camera.framerate = 32
 
         sleep(2)  # Camera warm-up time
-	step = 0
+	    step = 0
         count_flag = 0
         dist_array = []
         while True:
             camera.capture(stream, 'bgr', use_video_port=True)
             image = stream.array
             image = cv2.flip(image, -1)
-	    step += 1
+	        step += 1
             y=0
             x=0
             h=100
@@ -63,24 +63,24 @@ with picamera.PiCamera() as camera:
             x = center[1]/2 - w/2
             y = center[0]/2 - h/2
 
-	    image = image[int(y):int(y+h), int(x):int(x+w)]
-        # let's upscale the image using new  width and height
-        #up_width = 640
-        #up_height = 480
-        #up_points = (up_width, up_height)
-        #image = cv2.resize(image, up_points, interpolation= cv2.INTER_LINEAR)
+            image = image[int(y):int(y+h), int(x):int(x+w)]
+            # let's upscale the image using new  width and height
+            #up_width = 640
+            #up_height = 480
+            #up_points = (up_width, up_height)
+            #image = cv2.resize(image, up_points, interpolation= cv2.INTER_LINEAR)
             object_contour = detect_object(image)
 
             if object_contour is not None:
-		peri = cv2.arcLength(object_contour, True)
-		approx = cv2.approxPolyDP(object_contour, 0.03 * peri, True)
+                peri = cv2.arcLength(object_contour, True)
+                approx = cv2.approxPolyDP(object_contour, 0.03 * peri, True)
                 # Calculate object width in pixels
                 x, y, w, h = cv2.boundingRect(approx)
                 # Calculate distance to object
                 distance = distance_to_camera(KNOWN_WIDTH, FOCAL_LENGTH, w)
                 dist_array.append(distance)
                 count_flag += 1
-		#print(step)
+		        #print(step)
                 # Draw a bounding box around the object and display the distance
                 cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 cv2.putText(image, str(distance), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
@@ -108,7 +108,7 @@ with picamera.PiCamera() as camera:
 cv2.destroyAllWindows()
 
 # Variables
-xPos = 0;
+xPos = 0
 steerMultiplier = 0.8
 
 # Setup the ZeroBorg

@@ -10,7 +10,7 @@ import ZeroBorg
 ZB = ZeroBorg.ZeroBorg()
 
 # Parameters
-KNOWN_WIDTH = 12 # The actual width of the object in centimeters (change this to your target object width)
+KNOWN_WIDTH = 10 # The actual width of the object in centimeters (change this to your target object width)
 FOCAL_LENGTH = 250 # The focal length of the camera in pixels (change this to your camera's focal length)
 
 def distance_to_camera(known_width, focal_length, per_width):
@@ -61,17 +61,17 @@ with picamera.PiCamera() as camera:
             x = center[1]/2 - w/2
             y = center[0]/2 - h/2
 
-	    image = image[int(y):int(y+h), int(x):int(x+w)]
-        # let's upscale the image using new  width and height
-        #up_width = 640
-        #up_height = 480
-        #up_points = (up_width, up_height)
-        #image = cv2.resize(image, up_points, interpolation= cv2.INTER_LINEAR)
+            image = image[int(y):int(y+h), int(x):int(x+w)]
+            # let's upscale the image using new  width and height
+            #up_width = 640
+            #up_height = 480
+            #up_points = (up_width, up_height)
+            #image = cv2.resize(image, up_points, interpolation= cv2.INTER_LINEAR)
             object_contour = detect_object(image)
 
             if object_contour is not None:
-		peri = cv2.arcLength(object_contour, True)
-		approx = cv2.approxPolyDP(object_contour, 0.03 * peri, True)
+                peri = cv2.arcLength(object_contour, True)
+                approx = cv2.approxPolyDP(object_contour, 0.03 * peri, True)
                 # Calculate object width in pixels
                 x, y, w, h = cv2.boundingRect(approx)
                 # Calculate distance to object
@@ -106,7 +106,7 @@ with picamera.PiCamera() as camera:
 cv2.destroyAllWindows()
 
 # Variables
-xPos = 0;
+xPos = 0
 steerMultiplier = 0.8
 
 # Setup the ZeroBorg

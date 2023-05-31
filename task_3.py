@@ -10,7 +10,7 @@ import ZeroBorg
 ZB = ZeroBorg.ZeroBorg()
 
 # Parameters
-KNOWN_WIDTH = 15 # The actual width of the object in centimeters (change this to your target object width)
+KNOWN_WIDTH = 10 # The actual width of the object in centimeters (change this to your target object width)
 FOCAL_LENGTH = 250 # The focal length of the camera in pixels (change this to your camera's focal length)
 
 def distance_to_camera(known_width, focal_length, per_width):
@@ -60,11 +60,11 @@ def detect():
                 y = center[0]/2 - h/2
 
                 image = image[int(y):int(y+h), int(x):int(x+w)]
-            # let's upscale the image using new  width and height
-            #up_width = 640
-            #up_height = 480
-            #up_points = (up_width, up_height)
-            #image = cv2.resize(image, up_points, interpolation= cv2.INTER_LINEAR)
+                # let's upscale the image using new  width and height
+                #up_width = 640
+                #up_height = 480
+                #up_points = (up_width, up_height)
+                #image = cv2.resize(image, up_points, interpolation= cv2.INTER_LINEAR)
                 object_contour = detect_object(image)
 
                 if object_contour is not None:
@@ -103,7 +103,7 @@ def detect():
                     return distance_measured
                     # break
 
-    cv2.destroyAllWindows()
+cv2.destroyAllWindows()
 
 # Variables
 xPos = 0

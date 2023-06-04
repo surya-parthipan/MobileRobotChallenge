@@ -52,9 +52,9 @@ def detect():
                 image = stream.array
                 image = cv2.flip(image, -1)
                 y=0
-            	x=0
-            	h=100
-            	w=200
+                x=0
+                h=100
+                w=200
                 center = image.shape
                 x = center[1]/2 - w/2
                 y = center[0]/2 - h/2
@@ -161,11 +161,12 @@ def cal_time(dist):
     return dist/calib
 
 detect_flag = 0
+
 for i in range(9):
     detect_flag = detect()
 
     if detect_flag:
         PerformMove(1,1, cal_time(detect_flag))
-	break
+        break
     else :
         PerformMove(0.5,0,0.5)

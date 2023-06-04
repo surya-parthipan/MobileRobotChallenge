@@ -42,14 +42,14 @@ with picamera.PiCamera() as camera:
         camera.framerate = 32
 
         sleep(2)  # Camera warm-up time
-	    step = 0
+        step = 0
         count_flag = 0
         dist_array = []
         while True:
             camera.capture(stream, 'bgr', use_video_port=True)
             image = stream.array
             image = cv2.flip(image, -1)
-	        step += 1
+            step += 1
             y=0
             x=0
             h=100

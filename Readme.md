@@ -3,7 +3,7 @@
 Robotics 2023, Leiden University
 
 - Code for the challenges:
-
+   - Code Repo link: https://github.com/surya-parthipan/MobileRobotChallenge
    - Run the task_1.py to run the Challenge 1
    - Similary, task_2.py and task_3.py for respective challenges.
 
